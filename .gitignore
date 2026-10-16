@@ -1,0 +1,4 @@
+.env
+shots_raw/
+*.exe
+/pz5-db
