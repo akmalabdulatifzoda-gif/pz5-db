@@ -20,8 +20,9 @@ func main() {
 	_ = godotenv.Load()
 	dsn := os.Getenv("DATABASE_URL")
 	if dsn == "" {
-		// fallback — прямой DSN в коде (только для учебного стенда!)
-		dsn = "postgres://postgres:postgres@localhost:5432/todo?sslmode=disable"
+		// fallback — подключение через unix-сокет с peer-аутентификацией:
+		// пароль не нужен, роль PostgreSQL = текущий пользователь Linux (как у psql без параметров)
+		dsn = "postgres:///todo?host=/var/run/postgresql"
 	}
 
 	if *bench {

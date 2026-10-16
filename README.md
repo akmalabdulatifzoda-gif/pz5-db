@@ -12,9 +12,9 @@
 
 | Компонент | Версия |
 |---|---|
-| ОС | Ubuntu 24.04.5 LTS (ядро Linux 6.18), 2 ядра CPU, 8 ГБ ОЗУ |
-| Go | go1.24.7 linux/amd64 |
-| PostgreSQL | 16.15 (psql 16.15) |
+| ОС | Ubuntu 26.04 LTS |
+| Go | 1.23+ |
+| PostgreSQL | 18.6 (psql 18.6) |
 | Драйвер | github.com/jackc/pgx/v5 v5.7.6 (через `pgx/v5/stdlib`, режим совместимости с `database/sql`) |
 | .env | github.com/joho/godotenv v1.5.1 |
 
@@ -34,12 +34,16 @@ pz5-db/
 
 ## Запуск
 
-```bash
-# 1. Создать БД и таблицу
-psql -U postgres -f sql/init.sql
+Подключение — через unix-сокет с peer-аутентификацией (как `psql` без параметров): пароль не нужен,
+роль PostgreSQL совпадает с пользователем Linux. Роли нужно право создавать БД
+(один раз: `sudo -u postgres psql -c "ALTER ROLE akmal CREATEDB;"`).
 
-# 2. Указать строку подключения
-cp .env.example .env      # и заменить YOUR_PASSWORD
+```bash
+# 1. Создать БД и таблицу (пересоздаёт todo при повторном запуске)
+psql -a -f sql/init.sql
+
+# 2. (необязательно) своя строка подключения
+cp .env.example .env
 
 # 3. Запустить
 go run .                  # вставка, список, проверочные задания 1–3
