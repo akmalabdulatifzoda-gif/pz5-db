@@ -12,9 +12,9 @@
 
 | Компонент | Версия |
 |---|---|
-| ОС | Ubuntu 26.04 LTS |
-| Go | 1.23+ |
-| PostgreSQL | 18.6 (psql 18.6) |
+| ОС | Ubuntu 24.04.5 LTS (ядро Linux 6.18), 2 ядра CPU, 8 ГБ ОЗУ |
+| Go | go1.24.7 linux/amd64 |
+| PostgreSQL | 16.15 (psql 16.15) |
 | Драйвер | github.com/jackc/pgx/v5 v5.7.6 (через `pgx/v5/stdlib`, режим совместимости с `database/sql`) |
 | .env | github.com/joho/godotenv v1.5.1 |
 
